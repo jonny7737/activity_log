@@ -19,7 +19,6 @@ class ActivityLog with ChangeNotifier {
 
   void log(String entry, [StackTrace stackTrace]) {
     var traceInfo = TraceParser(stackTrace);
-    // print('${traceInfo.fileName}');
     String msg = '[$now] ' + entry;
     activity.add(msg);
     if (traceInfo.fileName != null) {
@@ -28,7 +27,6 @@ class ActivityLog with ChangeNotifier {
     }
     while (activity.length > 1000) activity.removeAt(0);
     notify();
-    // print(entry);
   }
 
   void notify() {
